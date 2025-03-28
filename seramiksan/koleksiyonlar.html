@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seramik Sanat | Koleksiyonlar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Temel Stiller */
+        :root {
+            --primary: #6D4C41;
+            --secondary: #8D6E63;
+            --accent: #D7CCC8;
+            --light: #EFEBE9;
+            --dark: #3E2723;
+            --highlight: #A1887F;
+            --text: #5D4037;
+            --text-light: #795548;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            display: inline-block;
+            background-color: var(--light);
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+        
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-social a {
+            margin-right: 15px;
+            font-size: 16px;
+            color: white;
+        }
+        
+        .header-social a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .header-contact a {
+            margin-left: 20px;
+            display: inline-flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .header-contact i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .header-main {
+            padding: 20px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            color: var(--text);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 30px 0;
+            background-color: var(--accent);
+        }
+        
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb-list li {
+            margin-right: 15px;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .breadcrumb-list li:not(:last-child)::after {
+            content: "/";
+            position: absolute;
+            right: -12px;
+            color: var(--text-light);
+        }
+        
+        .breadcrumb-list a:hover {
+            color: var(--primary);
+        }
+        
+        /* Koleksiyon Hero */
+        .collection-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .collection-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .collection-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Koleksiyon Grid */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .collection-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .collection-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .collection-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .collection-card:hover .collection-img img {
+            transform: scale(1.1);
+        }
+        
+        .collection-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .collection-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .collection-info h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .collection-info p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        /* Öne Çıkan Koleksiyon */
+        .featured-collection {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light), var(--accent));
+        }
+        
+        .featured-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-img {
+            flex: 1;
+            min-height: 500px;
+            overflow: hidden;
+        }
+        
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .featured-wrapper:hover .featured-img img {
+            transform: scale(1.05);
+        }
+        
+        .featured-content {
+            flex: 1;
+            padding: 50px;
+        }
+        
+        .featured-content h2 {
+            font-size: 32px;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .featured-content p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+        }
+        
+        .stat-item h4 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-item p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Koleksiyon Kategorileri */
+        .collection-categories {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            margin: 0 10px 10px;
+            border-radius: 30px;
+            background-color: var(--light);
+            color: var(--text);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .category-content {
+            display: none;
+        }
+        
+        .category-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Koleksiyon Galerisi */
+        .collection-gallery {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            opacity: 1;
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .collection-grid, .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-wrapper {
+                flex-direction: column;
+            }
+            
+            .featured-img {
+                min-height: 300px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 15px;
+            }
+            
+            .collection-hero h1 {
+                font-size: 36px;
+            }
+            
+            .collection-hero p {
+                font-size: 16px;
+            }
+            
+            .featured-content {
+                padding: 30px;
+            }
+            
+            .featured-content h2 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-top .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-contact {
+                margin-top: 10px;
+            }
+            
+            .header-contact a {
+                margin: 0 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .featured-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="header-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="header-contact">
+                    <a href="tel:+905555555555"><i class="fas fa-phone"></i> 0555 555 55 55</a>
+                    <a href="mailto:info@seramiksanat.com"><i class="fas fa-envelope"></i> info@seramiksanat.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container header-container">
+                <div class="logo">
+                    <i class="fas fa-archway"></i>
+                    <span>Seramik Sanat</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="koleksiyonlar.html" class="active">Koleksiyonlar</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li>Koleksiyonlar</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Koleksiyon Hero -->
+    <section class="collection-hero">
+        <div class="container">
+            <h1>Özel Seramik Koleksiyonlarımız</h1>
+            <p>Geleneksel el işçiliği ile modern tasarımın buluştuğu eşsiz seramik koleksiyonlarımızı keşfedin</p>
+            <a href="#featured" class="btn btn-primary">Öne Çıkan Koleksiyon</a>
+        </div>
+    </section>
+
+    <!-- Koleksiyon Grid -->
+    <section class="collections">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tüm Koleksiyonlar</h2>
+            </div>
+            
+            <div class="collection-grid">
+                <!-- Koleksiyon 1 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Geleneksel Çini Koleksiyonu">
+                        <span class="collection-badge">Klasik</span>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Geleneksel Çini Koleksiyonu</h3>
+                        <p>600 yıllık Osmanlı çini sanatının günümüze uyarlanmış modern yorumları</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+                
+                <!-- Koleksiyon 2 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1600566752225-2202139d3b23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern Geometri Serisi">
+                        <span class="collection-badge">Yeni</span>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Modern Geometri Serisi</h3>
+                        <p>Geometrik formların minimalist dokunuşlarla buluştuğu çağdaş tasarımlar</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+                
+                <!-- Koleksiyon 3 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Doğal Taş Etkili Seramikler">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Doğal Taş Etkili Seramikler</h3>
+                        <p>Mermer ve traverten dokularının seramikteki zarif yansımaları</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+                
+                <!-- Koleksiyon 4 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Sanatçı Koleksiyonu">
+                        <span class="collection-badge">Sınırlı Sayıda</span>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Sanatçı Koleksiyonu</h3>
+                        <p>Ünlü seramik sanatçılarının imzasını taşıyan özel parçalar</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+                
+                <!-- Koleksiyon 5 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Endüstriyel Tarz">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Endüstriyel Tarz</h3>
+                        <p>Ham dokuların ve rustik detayların öne çıktığı koleksiyon</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+                
+                <!-- Koleksiyon 6 -->
+                <div class="collection-card">
+                    <div class="collection-img">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Ahşap Dokulu Seramikler">
+                        <span class="collection-badge">Popüler</span>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Ahşap Dokulu Seramikler</h3>
+                        <p>Doğal ahşabın sıcaklığını seramikle buluşturan özel seri</p>
+                        <a href="#" class="btn btn-outline">Koleksiyonu Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Öne Çıkan Koleksiyon -->
+    <section class="featured-collection" id="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2>Öne Çıkan Koleksiyon</h2>
+            </div>
+            
+            <div class="featured-wrapper">
+                <div class="featured-img">
+                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Özel El Yapımı Koleksiyon">
+                </div>
+                <div class="featured-content">
+                    <h2>Özel El Yapımı Koleksiyon</h2>
+                    <p>Her biri ustalarımızın el emeği göz nuru olan bu özel koleksiyon, geleneksel tekniklerle modern tasarımları bir araya getiriyor. Tamamen el yapımı olan bu serideki her parça benzersizdir ve sınırlı sayıda üretilmiştir.</p>
+                    
+                    <div class="featured-stats">
+                        <div class="stat-item">
+                            <h4>250+</h4>
+                            <p>Özel Tasarım</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>12</h4>
+                            <p>Usta Sanatçı</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>5</h4>
+                            <p>Ödüllü Seri</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>100%</h4>
+                            <p>El İşçiliği</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Koleksiyonu Keşfet</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Koleksiyon Kategorileri -->
+    <section class="collection-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Koleksiyon Kategorileri</h2>
+            </div>
+            
+            <div class="category-tabs">
+                <button class="tab-btn active" data-tab="tasarim">Tasarım Serileri</button>
+                <button class="tab-btn" data-tab="sanatci">Sanatçı Koleksiyonları</button>
+                <button class="tab-btn" data-tab="mimari">Mimari Seriler</button>
+                <button class="tab-btn" data-tab="geleneksel">Geleneksel Koleksiyonlar</button>
+            </div>
+            
+            <div class="category-content active" id="tasarim">
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Minimalist Seri">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Minimalist Seri</h3>
+                            <p>Sadelik ve işlevselliğin uyum içinde buluştuğu tasarımlar</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Organik Formlar">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Organik Formlar</h3>
+                            <p>Doğadan ilham alan akıcı çizgiler ve yumuşak geçişler</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" id="sanatci">
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Ayşe Gül Koleksiyonu">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Ayşe Gül Koleksiyonu</h3>
+                            <p>Geleneksel motifleri çağdaş yorumlarla buluşturan özel seri</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1452&q=80" alt="Mehmet Usta Serisi">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Mehmet Usta Serisi</h3>
+                            <p>40 yıllık tecrübenin ürünü olan nadide parçalar</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" id="mimari">
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1600566752225-2202139d3b23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mimari Detaylar">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Mimari Detaylar</h3>
+                            <p>Mekanlara karakter katan özel tasarım seramikler</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dış Cephe Koleksiyonu">
+                        </div>
+                        <div class="collection-info">
+                            <h3>Dış Cephe Koleksiyonu</h3>
+                            <p>Hava koşullarına dayanıklı özel üretim seramikler</p>
+                            <a href="#" class="btn btn-outline">Keşfet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" id="geleneksel">
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-img">
+                            <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?ixlib=
