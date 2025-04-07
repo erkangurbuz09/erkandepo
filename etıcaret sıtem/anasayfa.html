@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Dünyası - Anasayfa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Forma Dünyası</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Anasayfa</a></li>
+                    <li><a href="formalar.html">Formalar</a></li>
+                    <li><a href="sepet.html">Sepetim <span id="cart-count">(0)</span></a></li>
+                    <li><a href="hakkimda.html">Hakkımda</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="slider-container">
+        <div class="slider-track">
+            <div class="slide active">
+                <img src="img/slider1.jpg" alt="Slider Resim 1 - Yeni Sezon">
+                <div class="slide-caption">
+                    <h2>Yeni Sezon Formaları</h2>
+                    <p>Taraftarı olduğun takımın en yeni forması burada.</p>
+                    <a href="formalar.html" class="btn">Koleksiyonu Gör</a>
+                </div>
+            </div>
+            <div class="slide">
+                 <img src="img/slider2.jpg" alt="Slider Resim 2 - Efsaneler">
+                 <div class="slide-caption">
+                     <h2>Efsane Formalar Geri Döndü</h2>
+                     <p>Unutulmaz anların formalarını yeniden keşfet.</p>
+                     <a href="formalar.html" class="btn">Nostalji Yap</a>
+                 </div>
+            </div>
+             <div class="slide">
+                 <img src="img/slider3.jpg" alt="Slider Resim 3 - Avrupa Devleri">
+                 <div class="slide-caption">
+                     <h2>Avrupa Devlerinin Formaları</h2>
+                     <p>En büyük liglerin şampiyonluk adayı takımları.</p>
+                     <a href="formalar.html" class="btn">Avrupa'yı Fethet</a>
+                 </div>
+            </div>
+        </div>
+        <button class="slider-btn prev" aria-label="Önceki Slayt">❮</button>
+        <button class="slider-btn next" aria-label="Sonraki Slayt">❯</button>
+        <div class="slider-dots"></div>
+    </section>
+
+    <main class="container page-content">
+        <section class="featured-products">
+            <h2>Öne Çıkanlar</h2>
+            <div class="product-grid">
+                 <div class="product-card" data-id="fener-home-24" data-name="Fenerbahçe İç Saha 23/24" data-price="1899.90" data-image-front="img/fener_home_front.jpg" data-image-back="img/fener_home_back.jpg">
+                     <div class="product-inner">
+                         <div class="product-front">
+                             <img src="img/fener_home_front.jpg" alt="Fenerbahçe İç Saha Ön">
+                         </div>
+                         <div class="product-back">
+                              <img src="img/fener_home_back.jpg" alt="Fenerbahçe İç Saha Arka">
+                              <div class="back-text">Fenerbahçe</div>
+                         </div>
+                     </div>
+                     <h3>Fenerbahçe İç Saha 23/24</h3>
+                     <p class="price">1899.90 TL</p>
+                     <button class="btn add-to-cart-btn">Sepete Ekle</button>
+                 </div>
+                 <div class="product-card" data-id="gs-home-24" data-name="Galatasaray İç Saha 23/24" data-price="1899.90" data-image-front="img/gs_home_front.jpg" data-image-back="img/gs_home_back.jpg">
+                      <div class="product-inner">
+                          <div class="product-front">
+                              <img src="img/gs_home_front.jpg" alt="Galatasaray İç Saha Ön">
+                          </div>
+                          <div class="product-back">
+                              <img src="img/gs_home_back.jpg" alt="Galatasaray İç Saha Arka">
+                               <div class="back-text">Galatasaray</div>
+                          </div>
+                      </div>
+                      <h3>Galatasaray İç Saha 23/24</h3>
+                      <p class="price">1899.90 TL</p>
+                      <button class="btn add-to-cart-btn">Sepete Ekle</button>
+                  </div>
+                  <div class="product-card" data-id="manu-home-24" data-name="Man. United İç Saha 23/24" data-price="2199.90" data-image-front="img/manu_home_front.jpg" data-image-back="img/manu_home_back.jpg">
+                     <div class="product-inner">
+                         <div class="product-front">
+                             <img src="img/manu_home_front.jpg" alt="Man. United İç Saha Ön">
+                         </div>
+                         <div class="product-back">
+                             <img src="img/manu_home_back.jpg" alt="Man. United İç Saha Arka">
+                             <div class="back-text">Man Utd</div>
+                         </div>
+                     </div>
+                     <h3>Man. United İç Saha 23/24</h3>
+                     <p class="price">2199.90 TL</p>
+                     <button class="btn add-to-cart-btn">Sepete Ekle</button>
+                 </div>
+                  <div class="product-card" data-id="real-home-24" data-name="Real Madrid İç Saha 23/24" data-price="2249.90" data-image-front="img/real_home_front.jpg" data-image-back="img/real_home_back.jpg">
+                      <div class="product-inner">
+                          <div class="product-front">
+                              <img src="img/real_home_front.jpg" alt="Real Madrid İç Saha Ön">
+                          </div>
+                          <div class="product-back">
+                               <img src="img/real_home_back.jpg" alt="Real Madrid İç Saha Arka">
+                               <div class="back-text">Real Madrid</div>
+                          </div>
+                      </div>
+                      <h3>Real Madrid İç Saha 23/24</h3>
+                      <p class="price">2249.90 TL</p>
+                      <button class="btn add-to-cart-btn">Sepete Ekle</button>
+                  </div>
+            </div>
+        </section>
+
+        <section class="info-boxes">
+             <div class="info-box">
+                 <i class="fas fa-shipping-fast fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;"></i>
+                 <h3>Hızlı Kargo</h3>
+                 <p>Siparişler aynı gün kargoda.</p>
+             </div>
+             <div class="info-box">
+                 <i class="fas fa-shield-alt fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;"></i>
+                 <h3>Güvenli Alışveriş</h3>
+                 <p>SSL sertifikalı güvenli ödeme.</p>
+             </div>
+             <div class="info-box">
+                  <i class="fas fa-headset fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;"></i>
+                  <h3>7/24 Destek</h3>
+                  <p>Sorularınız için bize ulaşın.</p>
+             </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Forma Dünyası. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

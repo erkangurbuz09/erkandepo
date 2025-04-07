@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Dünyası - Sepetim</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+             <h1 class="logo"><a href="index.html">Forma Dünyası</a></h1>
+             <nav>
+                 <ul>
+                     <li><a href="index.html">Anasayfa</a></li>
+                     <li><a href="formalar.html">Formalar</a></li>
+                     <li><a href="sepet.html" class="active">Sepetim <span id="cart-count">(0)</span></a></li>
+                     <li><a href="hakkimda.html">Hakkımda</a></li>
+                 </ul>
+             </nav>
+         </div>
+    </header>
+
+    <main class="container page-content">
+        <div id="cart-view">
+            <h2>Alışveriş Sepetim</h2>
+            <div id="cart-items-container">
+                 <p id="empty-cart-message">Sepetiniz şu anda boş.</p>
+            </div>
+            <div id="cart-summary" style="display: none;">
+                 <hr>
+                 <div class="cart-total">
+                     <strong>Toplam Tutar:</strong> <span id="cart-total-amount">0.00 TL</span>
+                 </div>
+                 <button class="btn checkout-btn">Ödemeye Geç</button>
+            </div>
+        </div>
+
+        <div id="payment-screen" style="display: none;">
+            <h2>Ödeme Bilgileri</h2>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="card-name">Kart Üzerindeki İsim</label>
+                    <input type="text" id="card-name" required placeholder="Ad Soyad">
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Kart Numarası</label>
+                    <input type="tel" id="card-number" inputmode="numeric" required placeholder="---- ---- ---- ----" pattern="[\d\s]{16,19}" maxlength="19" title="16 haneli kart numaranızı girin">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry-date">Son Kullanma Tarihi</label>
+                        <input type="text" id="expiry-date" required placeholder="AA/YY" pattern="\d{2}/\d{2}" title="AA/YY formatında girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="tel" inputmode="numeric" id="cvv" required placeholder="---" pattern="\d{3}" maxlength="3" title="3 haneli CVV kodunu girin">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="billing-address">Fatura Adresi</label>
+                    <textarea id="billing-address" rows="3" required placeholder="Cadde, Mahalle, İlçe/İl"></textarea>
+                </div>
+                <button type="submit" class="btn pay-now-btn">Ödemeyi Tamamla</button>
+                <button type="button" class="btn cancel-payment-btn">Sepete Dön</button>
+            </form>
+            <div id="payment-success-message" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle fa-lg"></i> Ödemeniz başarıyla alındı! Siparişiniz hazırlanıyor.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Forma Dünyası. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
