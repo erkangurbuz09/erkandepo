@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Görsel Puzzle</title>
+<style>
+body { text-align: center; font-family: Arial, sans-serif; }
+#container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+#drop-zone, #puzzle-pieces {
+width: 400px;
+height: 400px;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(4, 1fr);
+border: 2px solid #000;
+padding: 5px;
+background-color: #f0f0f0;
+}
+.piece {
+width: 100px;
+height: 100px;
+cursor: grab;
+background-size: 400px 400px;
+background-repeat: no-repeat;
+clip-path: url(#puzzleShape);
+}
+.empty {
+background-color: white;
+border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+<h2>Resim Yükle ve Puzzle Yap</h2>
+<input type="file" id="upload" accept="image/*">
+<div id="container">
+<div id="drop-zone"></div>
+<div id="puzzle-pieces"></div>
+</div>
+<svg width="0" height="0">
+<defs>
+<clipPath id="puzzleShape" clipPathUnits="objectBoundingBox">
+<path d="M0.1,0 C0.2,-0.1,0.8,-0.1,0.9,0 C1,0.1,1,0.9,0.9,1 C0.8,1.1,0.2,1.1,0.1,1 C0,0.9,0,0.1,0.1,0 Z" />
+</clipPath>
+</defs>
+</svg>
+<script>
+document.getElementById('upload').addEventListener('change', function(event) {
+const file = event.target.files[0];
+if (!file) return;
+
+const reader = new FileReader();
+reader.onload = function(e) {
+createPuzzle(e.target.result);
+};
+reader.readAsDataURL(file);
+});
+
+function createPuzzle(imageSrc) {
+const dropZone = document.getElementById('drop-zone');
+const puzzlePieces = document.getElementById('puzzle-pieces');
+dropZone.innerHTML = '';
+puzzlePieces.innerHTML = '';
+
+const gridSize = 4;
+let positions = [];
+for (let y = 0; y < gridSize; y++) {
+for (let x = 0; x < gridSize; x++) {
+positions.push({x, y});
+}
+}
+positions = positions.sort(() => Math.random() - 0.5);
+
+positions.forEach((pos) => {
+const piece = document.createElement('div');
+piece.classList.add('piece');
+piece.style.backgroundImage = `url('${imageSrc}')`;
+piece.style.backgroundPosition = `-${pos.x * 100}px -${pos.y * 100}px`;
+piece.draggable = true;
+piece.dataset.x = pos.x;
+piece.dataset.y = pos.y;
+piece.addEventListener('dragstart', dragStart);
+puzzlePieces.appendChild(piece);
+});
+
+for (let y = 0; y < gridSize; y++) {
+for (let x = 0; x < gridSize; x++) {
+const emptySlot = document.createElement('div');
+emptySlot.classList.add('piece', 'empty');
+emptySlot.dataset.x = x;
+emptySlot.dataset.y = y;
+emptySlot.addEventListener('dragover', dragOver);
+emptySlot.addEventListener('drop', drop);
+emptySlot.draggable = true;
+emptySlot.addEventListener('dragstart', dragStart);
+dropZone.appendChild(emptySlot);
+}
+}
+}
+
+function dragStart(event) {
+event.dataTransfer.setData('text/plain', JSON.stringify({
+x: event.target.dataset.x,
+y: event.target.dataset.y,
+backgroundImage: event.target.style.backgroundImage,
+backgroundPosition: event.target.style.backgroundPosition
+}));
+event.target.classList.add('dragging');
+}
+
+function dragOver(event) {
+event.preventDefault();
+}
+
+function drop(event) {
+event.preventDefault();
+const data = JSON.parse(event.dataTransfer.getData('text/plain'));
+
+if (event.target.classList.contains('piece')) {
+const existingPiece = document.querySelector(`.piece[data-x='${event.target.dataset.x}'][data-y='${event.target.dataset.y}']`);
+
+if (existingPiece && !existingPiece.classList.contains('empty')) {
+const puzzlePieces = document.getElementById('puzzle-pieces');
+existingPiece.dataset.x = null;
+existingPiece.dataset.y = null;
+existingPiece.classList.add('piece');
+existingPiece.classList.remove('empty');
+puzzlePieces.appendChild(existingPiece);
+}
+
+event.target.style.backgroundImage = data.backgroundImage;
+event.target.style.backgroundPosition = data.backgroundPosition;
+event.target.classList.remove('empty');
+
+const draggedPiece = document.querySelector(`.piece.dragging`);
+if (draggedPiece && draggedPiece.parentNode.id === "puzzle-pieces") {
+draggedPiece.remove();
+} else if (draggedPiece) {
+draggedPiece.style.backgroundImage = "";
+draggedPiece.style.backgroundPosition = "";
+draggedPiece.classList.add('empty');
+}
+}
+}
+</script>
+</body>
+</html>
+
